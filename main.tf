@@ -16,7 +16,7 @@ locals {
   single_host_cidr = "${local.proto == "ipv4" ? "32" : "128"}"
 
   ranges           = "${split("\n", data.http.pingdom_ranges.body)}"
-  formatted_ranges = "${formatlist("%s/%s", compact(local.ranges), local.single_host_cidr)}"
+  formatted_ranges = "${sort(formatlist("%s/%s", compact(local.ranges), local.single_host_cidr))}"
 }
 
 data "http" "pingdom_ranges" {
