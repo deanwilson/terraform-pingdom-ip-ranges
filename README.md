@@ -2,11 +2,9 @@
 
 Use the Pingdom Probes IP ranges in your terraform code
 
-Before you can log in to an AWS EC2 instance you'll need to create an assign
-an SSH key pair. This module allows you to use your existing GitHub registered
-public key instead of creating an AWS specific one.
-
 ## Usage
+
+*THIS MODULE REQUIRES YOU TO HAVE SECURITY GROUPS THAT ALLOW MORE THAN 50 RULES*
 
 The most basic use of this module fetches the IPv4 ranges used by Pingdoms
 probes and only requires the `source` line to be provided.
@@ -20,7 +18,9 @@ module "pingdom_ranges" {
 
 Once you have the ranges you can allow them to connect to your services using
 other terraform resources. Here we create an Amazon Web Services security group
-that permits Pingdom to connect via port 443.
+that permits Pingdom to connect via port 443. If you have the default AWS SG
+rule limit of 50 per group then this will fail due to the number of probe
+addresses pingdom use.
 
 ```
 resource "aws_security_group" "from_pingdom" {
