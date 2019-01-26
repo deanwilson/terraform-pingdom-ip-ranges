@@ -54,6 +54,8 @@ it twice.
 |------|-------------|
 | cidr_blocks | List of Pingdom CIDR ranges |
 
+## Examples
+examples directory contains working examples for AWS and Cloudflare access rules.
 
 ### Author
 
